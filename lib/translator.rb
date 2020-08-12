@@ -24,6 +24,7 @@ def get_english_meaning(yml_file, jp_emote)
   load_library(yml_file).each do |emotion, emotes|
     if emotes.any?(jp_emote)
       return emotion.to_s
+    end
   end
   
 end
