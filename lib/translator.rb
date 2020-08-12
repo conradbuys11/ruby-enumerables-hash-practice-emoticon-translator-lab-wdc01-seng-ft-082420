@@ -22,8 +22,8 @@ def get_japanese_emoticon(yml_file, en_emote)
   
   load_library(yml_file).each do |emotion, emotes|
     
-    if emotes.any?(en_emote)
-      return emotes[1]
+    if emotes[:english] == en_emote
+      return emotes[:japanese]
     end
     
   end
