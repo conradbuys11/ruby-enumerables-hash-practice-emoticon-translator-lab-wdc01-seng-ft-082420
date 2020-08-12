@@ -2,12 +2,23 @@
 require "yaml"
 
 def load_library(yml_file)
-  YAML.load_file(yml_file)
+  emote_library = {}
+  yaml_loaded = YAML.load_file(yml_file)
+  
+  yaml_loaded.each do |emotion, emotes|
+    
+    if !emote_library.key?(emotion)
+      emote_library[emotion] = {:english => nil, :japanese => nil}
+    end
+    
+    emote_library[emotion][:english] = emotes[0]
+    emote_library[emotion][:japanese] = emotes[1]
+    
+  end
+  emote_library
 end
 
 def get_japanese_emoticon(yml_file, en_emote)
-  
-  #keep in mind, for each emotion key, the english emote is index 0 of its array, and the japanese emote is index 1 of its array
   
   load_library(yml_file).each do |emotion, emotes|
     
